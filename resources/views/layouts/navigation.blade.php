@@ -32,6 +32,11 @@
                     <x-nav-link :href="route('incoming-stocks.index')" :active="request()->routeIs('incoming-stocks.index')">
                         {{ __('Incoming Stock') }}
                     </x-nav-link>
+
+                    {{-- Sales --}}
+                    <x-nav-link :href="route('sales.index')" :active="request()->routeIs('sales.index')">
+                        {{ __('Sales') }}
+                    </x-nav-link>
                 </div>
             </div>
 

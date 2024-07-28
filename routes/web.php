@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\IncomingStockController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SaleController;
 use App\Http\Controllers\StockController;
 use Illuminate\Support\Facades\Route;
 
@@ -37,6 +38,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/products/{productId}/stocks/{sizeId}', [StockController::class, 'getStockBySize']);
     Route::resource('incoming-stocks', IncomingStockController::class);
+    Route::resource('sales', SaleController::class);
 });
 
 require __DIR__.'/auth.php';

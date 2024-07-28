@@ -61,4 +61,17 @@ class ProductController extends Controller
 
         return redirect()->route('products.index')->with('success', 'Product deleted successfully.');
     }
+
+    public function sizes(Product $product)
+    {
+        $sizes = $product->stocks()->with('shoeSize')->get()->map(function($stock) {
+            return [
+                'id' => $stock->shoeSize->id,
+                'size' => $stock->shoeSize->size,
+                'quantity' => $stock->quantity,
+            ];
+        });
+
+        return response()->json($sizes);
+    }
 }
