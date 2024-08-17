@@ -107,7 +107,7 @@
                     @endif
                     <li class="nav-item">
                         @if(count($menuItem->submenu) == 0)
-                        <a class="nav-link menu-link" data-identity="{{ explode('/', $menuItem->path)[array_key_last(explode('/', $menuItem->path))] }}" href="{{ url($menuItem->path) }}">
+                        <a class="nav-link menu-link {{ explode('/', $menuItem->path)[array_key_last(explode('/', $menuItem->path))] == $activeMenu ? 'active' : '' }}" data-identity="{{ explode('/', $menuItem->path)[array_key_last(explode('/', $menuItem->path))] }}" href="{{ url($menuItem->path) }}">
                             <i class="mdi {{ $menuItem->icon }}"></i> <span>{{ $menuItem->label }}</span>
                         </a>
                         @else
