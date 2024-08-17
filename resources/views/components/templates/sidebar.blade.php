@@ -24,22 +24,22 @@
         <a href="javascript:;" data-tilt data-tilt-perspective="70" data-tilt-speed="400" data-tilt-max="25" class="logo logo-dark lh-1 py-4" style="transform-style: preserve-3d">
             <span class="logo-sm bg-light px-2 py-1 rounded-3 text-dark fw-semibold fs-5">
                 {{-- <img src="{{ asset('assets/velzon/images/logo-sm.png') }}" alt="" height="22"> --}}
-                <span style="transform: translateZ(20px)" class="mdi mdi-{{ $nameIcon }}">{{ $shortName }}</span>
+                <span style="transform: translateZ(20px)">{{ $shortName }}</span>
             </span>
             <span class="logo-lg bg-light px-2 py-1 rounded-3 text-dark fw-semibold fs-3">
                 {{-- <img src="{{ asset('assets/velzon/images/logo-dark.png') }}" alt="" height="17"> --}}
-                <span style="transform: translateZ(20px)" class="mdi mdi-{{ $nameIcon }}">{!! $longName !!}</span>
+                <span style="transform: translateZ(20px)">{!! $longName !!}</span>
             </span>
         </a>
         <!-- Light Logo-->
         <a href="javascript:;" data-tilt data-tilt-perspective="70" data-tilt-speed="400" data-tilt-max="25" class="logo logo-light lh-1 py-4" style="transform-style: preserve-3d">
             <span class="logo-sm bg-light px-2 py-1 rounded-3 text-dark fw-semibold fs-5">
                 {{-- <img src="{{ asset('assets/velzon/images/logo-sm.png') }}" alt="" height="22"> --}}
-                <span style="transform: translateZ(20px)" class="mdi mdi-{{ $nameIcon }}">{{ $shortName }}</span>
+                <span style="transform: translateZ(20px)">{{ $shortName }}</span>
             </span>
             <span class="logo-lg bg-light px-2 py-1 rounded-3 text-dark fw-semibold fs-3 d-flex align-items-center">
                 {{-- <img src="{{ asset('assets/velzon/images/logo-light.png') }}" alt="" height="17"> --}}
-                <span style="transform: translateZ(20px)" class="mdi mdi-{{ $nameIcon }}"></span> {!! $longName !!}
+                <span style="transform: translateZ(20px)"></span> {!! $longName !!}
             </span>
         </a>
         <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover" id="vertical-hover">
@@ -47,41 +47,41 @@
         </button>
     </div>
 
-    <div id="scrollbar" style="height: 96% !important;">
+    <div id="scrollbar" style="height: 90% !important;">
         <div class="container-fluid">
 
             <div id="two-column-menu">
             </div>
             <ul class="navbar-nav" id="navbar-nav">
                 @foreach (json_decode($menus) as $menu)
-                @if(property_exists($menu, 'permission'))
-                    {{-- If $menu->permission is an array --}}
-                    @if(is_array($menu->permission))
-                        @php
-                            $isGranted = false;
-                        @endphp
-                        @foreach ($menu->permission as $permission)
-                            @if(in_array($permission, $permissions))
-                                @php
-                                    $isGranted = true;
-                                @endphp
-                                @break
+                    @if(property_exists($menu, 'permission'))
+                        {{-- If $menu->permission is an array --}}
+                        @if(is_array($menu->permission))
+                            @php
+                                $isGranted = false;
+                            @endphp
+                            @foreach ($menu->permission as $permission)
+                                @if(in_array($permission, $permissions))
+                                    @php
+                                        $isGranted = true;
+                                    @endphp
+                                    @break
+                                @endif
+                            @endforeach
+                            @if(!$isGranted)
+                                @continue
                             @endif
-                        @endforeach
-                        @if(!$isGranted)
-                            @continue
-                        @endif
-                    @else
-                        {{-- If $menu->permission is not an array --}}
-                        @if(!in_array($menu->permission, $permissions))
-                            @continue
+                        @else
+                            {{-- If $menu->permission is not an array --}}
+                            @if(!in_array($menu->permission, $permissions))
+                                @continue
+                            @endif
                         @endif
                     @endif
-                @endif
 
-                @if($menu->label != '')
-                <li class="menu-title"><i class="ri-more-fill"></i> <span>{{ $menu->label }}</span></li>
-                @endif
+                    @if($menu->label != '')
+                    <li class="menu-title"><i class="ri-more-fill"></i> <span>{{ $menu->label }}</span></li>
+                    @endif
                     @foreach ($menu->menu as $menuItem)
                     @if(property_exists($menuItem, 'permission'))
                         @if(is_array($menuItem->permission))
@@ -143,18 +143,6 @@
     </div>
     
     <!-- Sidebar footer -->
-    <div class="navbar-footer">
-        <div class="continer-fluid">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/') }}">
-                        <i class="ri-home-2-line"></i>
-                        <span>My PAS Online Home</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
 
     <div class="sidebar-background"></div>
 </div>

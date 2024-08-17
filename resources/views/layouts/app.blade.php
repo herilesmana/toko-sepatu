@@ -1,11 +1,11 @@
 <x-templates.base>
 
     <x-slot name="title">
-        @yield('title', '') 5R System
+        @yield('title', '') Toko Sepatu
     </x-slot>
 
-    <x-slot name="longName">5R System</x-slot>
-    <x-slot name="shortName">5R</x-slot>
+    <x-slot name="longName">Toko Sepatu</x-slot>
+    <x-slot name="shortName">TS</x-slot>
 
     @yield('content')
 

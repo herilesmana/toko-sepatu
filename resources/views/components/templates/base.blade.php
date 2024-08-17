@@ -1,7 +1,19 @@
 @props([
-  'title' => '',
-  'activeMenu' => null,
-  'menus' => json_encode([]),
+    'title' => '',
+    'activeMenu' => null,
+    'menus' => json_encode([
+        [
+            'label' => '',
+            'menu' => [
+                [
+                    'path' => '/dashboard',
+                    'label' => 'Dashboard',
+                    'icon' => 'mdi-speedometer',
+                    'submenu' => []
+                ],
+            ]
+        ]
+    ])
 ])
 
 <!DOCTYPE html>
