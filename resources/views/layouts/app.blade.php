@@ -50,7 +50,6 @@
         
         <div class="main-content">
             <div class="page-content">
-                {{ $activeMenu }}
                 {{ $slot }}
             </div>
             <x-templates.footer />

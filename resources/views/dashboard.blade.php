@@ -3,76 +3,206 @@
 
     <x-slot name="activeMenu">dashboard</x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    <h1>Selamat datang di aplikasi toko sepatu <strong>Glory Shoes</strong></h1>
-                </div>
-            </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body p-0">
+                        <div class="alert alert-warning border-0 rounded-0 m-0 d-flex align-items-center" role="alert">
+                            <div class="flex-grow-1 text-truncate">
+                                <h1>Selamat datang di aplikasi toko sepatu <strong>Glory Shoes</strong></h1>
+                            </div>
+                        </div>
 
-            <h2 class="mt-8 mb-3 text-xl font-semibold">Summary Master</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <h2 class="text-xl font-semibold">Total Products</h2>
-                    <p class="mt-2 text-3xl">{{ $totalProducts }}</p>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <h2 class="text-xl font-semibold">Total Brands</h2>
-                    <p class="mt-2 text-3xl">{{ $totalBrands }}</p>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <h2 class="text-xl font-semibold">Total Categories</h2>
-                    <p class="mt-2 text-3xl">{{ $totalCategories }}</p>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <h2 class="text-xl font-semibold">Total Shoe Sizes</h2>
-                    <p class="mt-2 text-3xl">{{ $totalShoeSizes }}</p>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <h2 class="text-xl font-semibold">Total Stocks</h2>
-                    <p class="mt-2 text-3xl">{{ $totalStocks }}</p>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <h2 class="text-xl font-semibold">Total Sales</h2>
-                    <p class="mt-2 text-3xl">{{ $totalSales }}</p>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <h2 class="text-xl font-semibold">Sales Today</h2>
-                    <p class="mt-2 text-3xl">{{ $totalSalesToday }}</p>
+                        <div class="row align-items-end">
+                            <div class="col-sm-8">
+                                <div class="p-3">
+                                    <span class="fs-16 lh-base">
+                                        {{-- // Penjelasan menganai aplikasi toko sepatu Glory Shoes --}}
+                                        Glory Shoes adalah aplikasi toko sepatu yang memudahkan Anda dalam mengelola data produk sepatu, merek sepatu, kategori sepatu, ukuran sepatu, dan stok sepatu. Aplikasi ini juga memudahkan Anda dalam melakukan penjualan sepatu dan melihat laporan penjualan.
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 align-items-end">
+                                <div class="px-3 d-flex justify-content-end">
+                                    <img style="height: 90px" src="{{ asset('assets/template/images/user-illustarator-2.png') }}" class="img-fluid" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- end card-body-->
                 </div>
             </div>
-            <div class="mt-8">
-                <h2 class="text-xl font-semibold mb-4">Recent Sales</h2>
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <table class="min-w-full">
-                        <thead>
-                            <tr class="bg-yellow-500 bg-opacity-50 text-black">
-                                <th class="border px-4 py-2">ID</th>
-                                <th class="border px-4 py-2">Total Amount</th>
-                                <th class="border px-4 py-2">Date</th>
-                                <th class="border px-4 py-2">Details</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($recentSales as $sale)
-                                <tr class="hover:bg-slate-50">
-                                    <td class="border px-4 py-2">{{ $sale->id }}</td>
-                                    <td class="border px-4 py-2">{{ $sale->total_amount }}</td>
-                                    <td class="border px-4 py-2">{{ $sale->created_at->format('d-m-Y') }}</td>
-                                    <td class="border px-4 py-2">
-                                        <a href="{{ route('sales.show', $sale->id) }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">View</a>
-                                    </td>
-                                </tr>
-                            @endforeach
-    
-                            @if ($recentSales->isEmpty())
-                                <tr>
-                                    <td class="border px-4 py-2 text-center" colspan="4">No recent sales found.</td>
-                                </tr>
-                            @endif
-                        </tbody>
-                    </table>
+            
+            <div class="col-md-3">
+                <div class="card card-animate">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <p class="fw-medium text-muted mb-0">Total Products</p>
+                                <h2 class="mt-4 ff-secondary fw-semibold"><span class="counter-value" data-target="{{ $totalProducts }}">{{ $totalProducts }}</span></h2>
+                            </div>
+                            <div>
+                                <div class="avatar-sm flex-shrink-0">
+                                    <span class="avatar-title bg-info-subtle rounded-circle fs-2">
+                                        <i class="ri-shopping-cart-2-line"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- end card body -->
+                </div> <!-- end card-->
+            </div>
+            <div class="col-md-3">
+                <div class="card card-animate">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <p class="fw-medium text-muted mb-0">Total Brands</p>
+                                <h2 class="mt-4 ff-secondary fw-semibold"><span class="counter-value" data-target="{{ $totalBrands }}">{{ $totalBrands }}</span></h2>
+                            </div>
+                            <div>
+                                <div class="avatar-sm flex-shrink-0">
+                                    <span class="avatar-title bg-info-subtle rounded-circle fs-2">
+                                        <i class="ri-store-2-line"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- end card body -->
+                </div> <!-- end card-->
+            </div>
+            <div class="col-md-3">
+                <div class="card card-animate">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <p class="fw-medium text-muted mb-0">Total Categories</p>
+                                <h2 class="mt-4 ff-secondary fw-semibold"><span class="counter-value" data-target="{{ $totalCategories }}">{{ $totalCategories }}</span></h2>
+                            </div>
+                            <div>
+                                <div class="avatar-sm flex-shrink-0">
+                                    <span class="avatar-title bg-info-subtle rounded-circle fs-2">
+                                        <i class="ri-folder-3-line"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- end card body -->
+                </div> <!-- end card-->
+            </div>
+            <div class="col-md-3">
+                <div class="card card-animate">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <p class="fw-medium text-muted mb-0">Total Shoe Sizes</p>
+                                <h2 class="mt-4 ff-secondary fw-semibold"><span class="counter-value" data-target="{{ $totalShoeSizes }}">{{ $totalShoeSizes }}</span></h2>
+                            </div>
+                            <div>
+                                <div class="avatar-sm flex-shrink-0">
+                                    <span class="avatar-title bg-info-subtle rounded-circle fs-2">
+                                        <i class="ri-ruler-2-line"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- end card body -->
+                </div> <!-- end card-->
+            </div>
+            <div class="col-md-4">
+                <div class="card card-animate">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <p class="fw-medium text-muted mb-0">Total Stocks</p>
+                                <h2 class="mt-4 ff-secondary fw-semibold"><span class="counter-value" data-target="{{ $totalStocks }}">{{ $totalStocks }}</span></h2>
+                            </div>
+                            <div>
+                                <div class="avatar-sm flex-shrink-0">
+                                    <span class="avatar-title bg-info-subtle rounded-circle fs-2">
+                                        <i class="ri-stack-line"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- end card body -->
+                </div> <!-- end card-->
+            </div>
+            <div class="col-md-4">
+                <div class="card card-animate">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <p class="fw-medium text-muted mb-0">Total Sales</p>
+                                <h2 class="mt-4 ff-secondary fw-semibold"><span class="counter-value" data-target="{{ $totalSales }}">{{ $totalSales }}</span></h2>
+                            </div>
+                            <div>
+                                <div class="avatar-sm flex-shrink-0">
+                                    <span class="avatar-title bg-info-subtle rounded-circle fs-2">
+                                        <i class="ri-money-dollar-circle-line"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- end card body -->
+                </div> <!-- end card-->
+            </div>
+            <div class="col-md-4">
+                <div class="card card-animate">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <p class="fw-medium text-muted mb-0">Total Sales Today</p>
+                                <h2 class="mt-4 ff-secondary fw-semibold"><span class="counter-value" data-target="{{ $totalSalesToday }}">{{ $totalSalesToday }}</span></h2>
+                            </div>
+                            <div>
+                                <div class="avatar-sm flex-shrink-0">
+                                    <span class="avatar-title bg-info-subtle rounded-circle fs-2">
+                                        <i class="ri-money-dollar-circle-line"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- end card body -->
+                </div> <!-- end card-->
+            </div>
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Recent Sales</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive table-card">
+                            <table class="table">
+                                <thead>
+                                    <tr class="table-light">
+                                        <th>ID</th>
+                                        <th>Total Amount</th>
+                                        <th>Date</th>
+                                        <th>Details</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($recentSales as $sale)
+                                        <tr>
+                                            <td>{{ $sale->id }}</td>
+                                            <td>{{ $sale->total_amount }}</td>
+                                            <td>{{ $sale->created_at->format('d-m-Y') }}</td>
+                                            <td>
+                                                <a href="{{ route('sales.show', $sale->id) }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">View</a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+            
+                                    @if ($recentSales->isEmpty())
+                                        <tr>
+                                            <td class="border px-4 py-2 text-center" colspan="4">No recent sales found.</td>
+                                        </tr>
+                                    @endif
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
