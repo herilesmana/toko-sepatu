@@ -26,6 +26,12 @@
                     'icon' => 'mdi-shoe-formal',
                     'submenu' => []
                 ],
+                [
+                    'path' => '/categories',
+                    'label' => 'Categories',
+                    'icon' => 'mdi-shoe-formal',
+                    'submenu' => []
+                ],
             ]
         ]
     ])
