@@ -38,6 +38,18 @@
         ],
         [
             'permission' => ['admin'],
+            'label' => 'Report',
+            'menu' => [
+                [
+                    'path' => '/report/product-stock',
+                    'label' => 'Product Stock',
+                    'icon' => 'mdi-file-chart',
+                    'submenu' => []
+                ]
+            ]
+        ],
+        [
+            'permission' => ['admin'],
             'label' => 'Master Data',
             'menu' => [
                 [
