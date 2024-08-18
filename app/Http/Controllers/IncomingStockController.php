@@ -42,6 +42,6 @@ class IncomingStockController extends Controller
 
         $stock->increment('quantity', $request->quantity);
 
-        return redirect()->route('incoming-stocks.index')->with('success', 'Incoming stock added successfully.');
+        return redirect()->route('incoming-stocks.create')->with('success', 'Incoming stock added successfully.');
     }
 }
