@@ -7,6 +7,7 @@
     'scripts' => '',
     'menus' => json_encode([
         [
+            'permission' => ['admin', 'user'],
             'label' => 'Welcome, ' . Auth::user()->name,
             'menu' => [
                 [
@@ -18,6 +19,7 @@
             ]
         ],
         [
+            'permission' => ['admin', 'user'],
             'label' => 'Transaksi',
             'menu' => [
                 [
@@ -35,6 +37,7 @@
             ]
         ],
         [
+            'permission' => ['admin'],
             'label' => 'Master Data',
             'menu' => [
                 [

@@ -3,7 +3,8 @@
     'longName' => '',
     'shortName' => '',
     'nameIcon' => 'heart',
-    'activeMenu' => null
+    'activeMenu' => null,
+    'permissions' => [auth()->user()->role],
 ])
 
 <style>

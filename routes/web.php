@@ -34,10 +34,12 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::resource('brands', BrandController::class);
-    Route::resource('categories', CategoryController::class);
-    Route::resource('products', ProductController::class);
-    Route::resource('users', UserController::class);
+    Route::middleware('admin')->group(function () {
+        Route::resource('brands', BrandController::class);
+        Route::resource('categories', CategoryController::class);
+        Route::resource('products', ProductController::class);
+        Route::resource('users', UserController::class);
+    });
 
     Route::get('/products/{productId}/stocks/{sizeId}', [StockController::class, 'getStockBySize']);
     Route::resource('incoming-stocks', IncomingStockController::class);
