@@ -59,7 +59,7 @@ class SaleController extends Controller
             }
         }
 
-        return redirect()->route('sales.index')->with('success', 'Sale transaction completed successfully.');
+        return redirect()->route('sales.create')->with('success', 'Sale transaction completed successfully.');
     }
 
     public function show(Sale $sale)

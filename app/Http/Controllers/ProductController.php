@@ -74,4 +74,32 @@ class ProductController extends Controller
 
         return response()->json($sizes);
     }
+
+    public function findByBarcode($barcode) {
+        $product = Product::where('barcode', $barcode)
+        ->with('brand', 'category')
+        ->first();
+    
+        if ($product) {
+            return response()->json($product);
+        } else {
+            return response()->json(null, 404);
+        }
+    }
+
+    public function search(Request $request) {
+        $products = Product::where('name', 'like', "%$request->search%")
+        ->orWhere('description', 'like', "%$request->search%")
+        ->with('brand', 'category')
+        // Where brand and category are relationships
+        ->orWhereHas('brand', function($query) use ($request) {
+            $query->where('name', 'like', "%$request->search%");
+        })
+        ->orWhereHas('category', function($query) use ($request) {
+            $query->where('name', 'like', "%$request->search%");
+        })
+        ->get();
+
+        return response()->json($products);
+    }
 }
