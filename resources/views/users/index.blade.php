@@ -1,0 +1,53 @@
+<x-app-layout>
+    <x-slot name="header">Users</x-slot>
+    <x-slot name="activeMenu">users</x-slot>
+
+    <div class="card">
+        <div class="card-header">
+            <a href="{{ route('users.create') }}" class="btn btn-primary">Add User</a>
+        </div>
+        <div class="card-body">
+            <table class="table table-hover">
+                <thead>
+                    <tr class="table-light">
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($users as $user)
+                        <tr>
+                            <td>{{ $user->name }}</td>
+                            <td>{{ $user->email }}</td>
+                            <td>
+                                @if ($user->id !== auth()->id())
+                                    <div class="d-flex gap-2">
+                                        <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                                        <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="inline-block">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                                        </form>
+                                    </div>
+                                @else
+                                    <span class="text-muted">It is you!</span>
+                                @endif
+                            </td>
+                        </tr>
+                    @endforeach
+
+                    @if ($users->isEmpty())
+                        <tr>
+                            <td class="text-center" colspan="3">No users found.</td>
+                        </tr>
+                    @endif
+                </tbody>
+            </table>
+        </div>
+
+        <div class="mt-4">
+            {{ $users->links() }}
+        </div>
+    </div>
+</x-app-layout>

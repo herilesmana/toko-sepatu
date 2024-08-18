@@ -54,6 +54,12 @@
                     'label' => 'Products',
                     'icon' => 'mdi-shoe-formal',
                     'submenu' => []
+                ],
+                [
+                    'path' => '/users',
+                    'label' => 'Users',
+                    'icon' => 'mdi-account-group',
+                    'submenu' => []
                 ]
             ]
         ]
