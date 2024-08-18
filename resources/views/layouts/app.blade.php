@@ -7,12 +7,23 @@
     'scripts' => '',
     'menus' => json_encode([
         [
-            'label' => '',
+            'label' => 'Welcome, ' . Auth::user()->name,
             'menu' => [
                 [
                     'path' => '/dashboard',
                     'label' => 'Dashboard',
                     'icon' => 'mdi-speedometer',
+                    'submenu' => []
+                ],
+            ]
+        ],
+        [
+            'label' => 'Master Data',
+            'menu' => [
+                [
+                    'path' => '/brands',
+                    'label' => 'Brands',
+                    'icon' => 'mdi-shoe-formal',
                     'submenu' => []
                 ],
             ]

@@ -93,7 +93,11 @@
                     <div class="dropdown-menu dropdown-menu-end">
                         <!-- item-->
                         <h6 class="dropdown-header">Welcome {{ auth()->user()->name }}!</h6>
-                        <a class="dropdown-item logout" href="javascript:"><i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span class="align-middle" data-key="t-logout">Logout</span></a>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <a class="dropdown-item logout" onClick="event.preventDefault();
+                                                this.closest('form').submit();" href="javascript:"><i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span class="align-middle" data-key="t-logout">Logout</span></a>
+                        </form>
                     </div>
                 </div>
                 @endauth
