@@ -21,13 +21,13 @@
             'label' => 'Transaksi',
             'menu' => [
                 [
-                    'path' => '/incoming-stocks',
+                    'path' => '/incoming-stocks/create',
                     'label' => 'Incoming Stocks',
                     'icon' => 'mdi-import',
                     'submenu' => []
                 ],
                 [
-                    'path' => '/sales',
+                    'path' => '/sales/create',
                     'label' => 'Sales',
                     'icon' => 'mdi-cash-register',
                     'submenu' => []

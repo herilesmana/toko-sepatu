@@ -107,7 +107,7 @@
                     @endif
                     <li class="nav-item">
                         @if(count($menuItem->submenu) == 0)
-                        <a class="nav-link menu-link {{ explode('/', $menuItem->path)[array_key_last(explode('/', $menuItem->path))] == $activeMenu ? 'active' : '' }}" data-identity="{{ explode('/', $menuItem->path)[array_key_last(explode('/', $menuItem->path))] }}" href="{{ url($menuItem->path) }}">
+                        <a class="nav-link menu-link {{ Str::slug($menuItem->label) == $activeMenu ? 'active' : '' }}" data-identity="{{ Str::slug($menuItem->label) }}" href="{{ url($menuItem->path) }}">
                             <i class="mdi {{ $menuItem->icon }}"></i> <span>{{ $menuItem->label }}</span>
                         </a>
                         @else
@@ -126,7 +126,7 @@
                                         $currentUrlArray = explode('/', url()->current());
                                         @endphp
                                         <li class="nav-item">
-                                            <a data-identity="{{ explode('/', $submenu->path)[array_key_last(explode('/', $submenu->path))] == $activeMenu ? end($currentUrlArray) : explode('/', $submenu->path)[array_key_last(explode('/', $submenu->path))] }}" href="{{ url($submenu->path) }}" class="nav-link">{!! $submenu->label !!}</a>
+                                            <a data-identity="{{ Str::slug($submenu->label) == $activeMenu ? end($currentUrlArray) : Str::slug($submenu->label) }}" href="{{ url($submenu->path) }}" class="nav-link">{!! $submenu->label !!}</a>
                                         </li>
                                         @endforeach
                                     </ul>
