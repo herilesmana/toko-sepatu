@@ -81,6 +81,14 @@
     </div>
 </x-app-layout>
 
+@session('success')
+    <script>
+        // Open the receipt in a new tab with session sale_id
+        var saleId = "{{ session('sale_id') }}";
+        window.open(`{{ url('sales') }}/${saleId}/receipt`, '_blank');
+    </script>
+@endsession
+
 <script>
     function currencyIndonesia(value) {
         return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(value);

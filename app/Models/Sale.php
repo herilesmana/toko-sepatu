@@ -9,7 +9,7 @@ class Sale extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['total_amount'];
+    protected $fillable = ['total_amount', 'user_id'];
 
     public function items()
     {
@@ -19,5 +19,10 @@ class Sale extends Model
     public function getTotalAttribute()
     {
         return $this->items->sum('total');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

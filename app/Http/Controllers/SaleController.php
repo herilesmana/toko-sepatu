@@ -39,7 +39,10 @@ class SaleController extends Controller
             $totalAmount += $item['quantity'] * $item['price'];
         }
 
-        $sale = Sale::create(['total_amount' => $totalAmount]);
+        $sale = Sale::create([
+            'total_amount' => $totalAmount,
+            'user_id' => auth()->id(),
+        ]);
 
         foreach ($request->items as $item) {
             SaleItem::create([
@@ -59,12 +62,25 @@ class SaleController extends Controller
             }
         }
 
-        return redirect()->route('sales.create')->with('success', 'Sale transaction completed successfully.');
+        return redirect()->route('sales.create')
+        ->with([
+            'success' => 'Sale transaction completed successfully.',
+            'sale_id' => $sale->id,
+        ]);
     }
 
     public function show(Sale $sale)
     {
         $sale->load('items.product', 'items.shoeSize');
         return view('sales.show', compact('sale'));
+    }
+
+    public function receipt($sale_id)
+    {
+        $sale = Sale::with('items.product', 'items.shoeSize')
+        ->with('user')
+        ->findOrFail($sale_id);
+
+        return view('sales.receipt', compact('sale'));
     }
 }
