@@ -18,6 +18,17 @@
             ]
         ],
         [
+            'label' => 'Transaksi',
+            'menu' => [
+                [
+                    'path' => '/incoming-stocks',
+                    'label' => 'Incoming Stocks',
+                    'icon' => 'mdi-shoe-formal',
+                    'submenu' => []
+                ]
+            ]
+        ],
+        [
             'label' => 'Master Data',
             'menu' => [
                 [
@@ -37,7 +48,7 @@
                     'label' => 'Products',
                     'icon' => 'mdi-shoe-formal',
                     'submenu' => []
-                ],
+                ]
             ]
         ]
     ])

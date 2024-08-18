@@ -1,46 +1,41 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Incoming Stocks') }}
-        </h2>
-    </x-slot>
+    <x-slot name="header">Incoming Stocks</x-slot>
+    <x-slot name="activeMenu">incoming-stocks</x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    <a href="{{ route('incoming-stocks.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add Incoming Stock</a>
-                    <table class="min-w-full mt-4">
-                        <thead>
-                            <tr class="bg-yellow-500 bg-opacity-50 text-black">
-                                <th class="border px-4 py-2">Product</th>
-                                <th class="border px-4 py-2">Shoe Size</th>
-                                <th class="border px-4 py-2">Quantity</th>
-                                <th class="border px-4 py-2">Created At</th>
+    <div class="card">
+        <div class="card-body">
+            <a href="{{ route('incoming-stocks.create') }}" class="btn btn-success mb-3">Add Incoming Stock</a>
+            <div class="table-responsive">
+                <table class="table table-bordered tabe-hover table-striped">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Product</th>
+                            <th>Shoe Size</th>
+                            <th>Quantity</th>
+                            <th>Transaction Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($incomingStocks as $incomingStock)
+                            <tr>
+                                <td>{{ $incomingStock->product->name }}</td>
+                                <td>{{ $incomingStock->shoeSize->size }}</td>
+                                <td>{{ $incomingStock->quantity }}</td>
+                                <td>{{ $incomingStock->getFormattedCreatedAtAttribute() }}</td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($incomingStocks as $incomingStock)
-                                <tr class="hover:bg-slate-50">
-                                    <td class="border px-4 py-2">{{ $incomingStock->product->name }}</td>
-                                    <td class="border px-4 py-2">{{ $incomingStock->shoeSize->size }}</td>
-                                    <td class="border px-4 py-2">{{ $incomingStock->quantity }}</td>
-                                    <td class="border px-4 py-2">{{ $incomingStock->getFormattedCreatedAtAttribute() }}</td>
-                                </tr>
-                            @endforeach
+                        @endforeach
 
-                            @if ($incomingStocks->isEmpty())
-                                <tr>
-                                    <td class="border px-4 py-2 text-center" colspan="4">No incoming stocks found.</td>
-                                </tr>
-                            @endif
-                        </tbody>
-                    </table>
+                        @if ($incomingStocks->isEmpty())
+                            <tr>
+                                <td colspan="4" class="text-center">No incoming stocks found.</td>
+                            </tr>
+                        @endif
+                    </tbody>
+                </table>
+            </div>
 
-                    <div class="mt-4">
-                        {{ $incomingStocks->links() }}
-                    </div>
-                </div>
+            <div class="mt-3">
+                {{ $incomingStocks->links() }}
             </div>
         </div>
     </div>
