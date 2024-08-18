@@ -23,7 +23,13 @@
                 [
                     'path' => '/incoming-stocks',
                     'label' => 'Incoming Stocks',
-                    'icon' => 'mdi-shoe-formal',
+                    'icon' => 'mdi-import',
+                    'submenu' => []
+                ],
+                [
+                    'path' => '/sales',
+                    'label' => 'Sales',
+                    'icon' => 'mdi-cash-register',
                     'submenu' => []
                 ]
             ]
