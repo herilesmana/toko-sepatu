@@ -1,4 +1,4 @@
-<header id="page-topbar" class="shadow-sm">
+<header id="page-topbar">
     <div class="layout-width">
         <div class="navbar-header">
             <div class="d-flex">

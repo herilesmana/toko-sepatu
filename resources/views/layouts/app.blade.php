@@ -61,6 +61,39 @@
         
         <div class="main-content">
             <div class="page-content">
+                <div class="container-fluid">
+                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                        <h4 class="mb-sm-0">{{ $header }}</h4>
+    
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                {{-- <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboards</a></li>
+                                <li class="breadcrumb-item active">Analytics</li> --}}
+                                {{-- Generate from url --}}
+                                @php
+                                    $url = url()->current();
+                                    $url = str_replace(url('/'), '', $url);
+                                    $url = explode('/', $url);
+                                @endphp
+
+                                @foreach (collect($url)->filter(function ($_item) { return $_item != ''; }) as $item)
+                                    <li class="breadcrumb-item
+                                    @if ($loop->last)
+                                        active
+                                    @endif
+                                    ">
+                                        @if(!$loop->last)
+                                        <a href="javascript: void(0);">{{ ucfirst($item) }}</a>
+                                        @else
+                                        {{ ucfirst($item) }}
+                                        @endif
+                                    </li>
+                                @endforeach
+                            </ol>
+                        </div>
+    
+                    </div>
+                </div>
                 {{ $slot }}
             </div>
             <x-templates.footer />
