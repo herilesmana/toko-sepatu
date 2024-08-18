@@ -12,6 +12,7 @@
                     <tr class="table-light">
                         <th>Name</th>
                         <th>Email</th>
+                        <th>Role</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -20,6 +21,13 @@
                         <tr>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
+                            <td>
+                                @if ($user->role === 'admin')
+                                    <span class="badge bg-success">Admin</span>
+                                @else
+                                    <span class="badge bg-primary">User</span>
+                                @endif
+                            </td>
                             <td>
                                 @if ($user->id !== auth()->id())
                                     <div class="d-flex gap-2">

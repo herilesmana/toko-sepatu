@@ -32,6 +32,17 @@
                     @enderror
                 </div>
                 <div class="mb-4">
+                    <label for="role" class="form-label">Role:</label>
+                    <select name="role" id="role" class="form-select @error('role') is-invalid @enderror" required>
+                        <option value="">Select Role</option>
+                        <option value="admin" {{ old('role', $user->role) == 'admin' ? 'selected' : '' }}>Admin</option>
+                        <option value="user" {{ old('role', $user->role) == 'user' ? 'selected' : '' }}>User</option>
+                    </select>
+                    @error('role')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="mb-4">
                     <label for="password" class="form-label">Password:</label>
                     <input type="password" name="password" id="password" class="form-control @error('password') is-invalid @enderror">
                     <small class="form-text text-muted">Leave blank if you don't want to change the password.</small>

@@ -22,6 +22,7 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
+            'role' => 'required|string|in:admin,user',
         ], [
             'name.required' => 'The name field is required.',
             'name.max' => 'The name may not be greater than 255 characters.',
@@ -31,12 +32,14 @@ class UserController extends Controller
             'password.required' => 'The password field is required.',
             'password.min' => 'The password must be at least 8 characters.',
             'password.confirmed' => 'The password confirmation does not match.',
+            'role.required' => 'The role field is required.',
         ]);
 
         User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'role' => $request->role,
         ]);
 
         return redirect()->route('users.index')->with('success', 'User created successfully.');
@@ -51,6 +54,7 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
             'password' => 'nullable|string|min:8|confirmed',
+            'role' => 'required|string|in:admin,user',
         ], [
             'name.required' => 'The name field is required.',
             'name.max' => 'The name may not be greater than 255 characters.',
@@ -59,12 +63,14 @@ class UserController extends Controller
             'email.unique' => 'This email address is already in use.',
             'password.min' => 'The password must be at least 8 characters.',
             'password.confirmed' => 'The password confirmation does not match.',
+            'role.required' => 'The role field is required.',
         ]);
 
         $user->update([
             'name' => $request->name,
             'email' => $request->email,
             'password' => $request->password ? Hash::make($request->password) : $user->password,
+            'role' => $request->role,
         ]);
 
         return redirect()->route('users.index')->with('success', 'User updated successfully.');
