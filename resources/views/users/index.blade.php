@@ -57,8 +57,17 @@
             </table>
         </div>
 
-        <div class="mt-4">
+        {{-- <div class="mt-4">
             {{ $users->links() }}
-        </div>
+        </div> --}}
     </div>
+
+    {{-- Implement datatable --}}
+    <x-slot name="scripts">
+        <script>
+            $(document).ready(function() {
+                $('.table').DataTable();
+            });
+        </script>
+    </x-slot>
 </x-app-layout>

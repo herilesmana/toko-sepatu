@@ -4,7 +4,10 @@
 
     <div class="card">
         <div class="card-header">
-            <a href="{{ route('categories.create') }}" class="btn btn-primary">Tambah Jenis</a>
+            <a href="{{ route('categories.create') }}" class="btn btn-primary">
+                <i class="mdi mdi-plus"></i>
+                Tambah Jenis
+            </a>
         </div>
         <div class="card-body">
             <table class="table table-hover">
@@ -50,8 +53,16 @@
         </div>
 
         {{-- Pagination --}}
-        <div class="mt-4">
+        {{-- <div class="mt-4">
             {{ $categories->links() }}
-        </div>
+        </div> --}}
     </div>
+
+    <x-slot name="scripts">
+        <script>
+            $(document).ready(function() {
+                $('.table').DataTable();
+            });
+        </script>
+    </x-slot>
 </x-app-layout>
