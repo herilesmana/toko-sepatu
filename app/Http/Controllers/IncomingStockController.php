@@ -36,8 +36,7 @@ class IncomingStockController extends Controller
 
         $stock = Stock::firstOrCreate([
             'product_id' => $request->product_id,
-            'shoe_size_id' => $request->shoe_size_id,
-            'quantity' => 0,
+            'shoe_size_id' => $request->shoe_size_id
         ]);
 
         $stock->increment('quantity', $request->quantity);
