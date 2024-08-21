@@ -37,7 +37,7 @@
             ]
         ],
         [
-            'permission' => ['admin'],
+            'permission' => ['admin', 'user'],
             'label' => 'Report',
             'menu' => [
                 [
