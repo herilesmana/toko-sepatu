@@ -10,9 +10,25 @@ class SalesReportController extends Controller
 {
     public function index()
     {
-        $data = SaleItem::with('product', 'shoeSize', 'sale')
-            ->get();
+        $year = request('year');
+        $month = request('month');
 
-        return view('reports.sales', compact('data'));
+        $data = SaleItem::with('product', 'shoeSize', 'sale');
+
+        if ($year) {
+            $data->whereHas('sale', function ($query) use ($year) {
+                $query->whereYear('created_at', $year);
+            });
+        }
+
+        if ($month) {
+            $data->whereHas('sale', function ($query) use ($month) {
+                $query->whereMonth('created_at', $month);
+            });
+        }
+
+        $data = $data->get();
+
+        return view('reports.sales', compact('data', 'year', 'month'));
     }
 }
