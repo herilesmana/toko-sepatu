@@ -45,6 +45,12 @@
                     'label' => 'Product Stock',
                     'icon' => 'mdi-file-chart',
                     'submenu' => []
+                ],
+                [
+                    'path' => '/report/sales',
+                    'label' => 'Laporan Penjualan',
+                    'icon' => 'mdi-chart-line',
+                    'submenu' => []
                 ]
             ]
         ],

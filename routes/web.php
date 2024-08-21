@@ -7,6 +7,7 @@ use App\Http\Controllers\IncomingStockController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SaleController;
+use App\Http\Controllers\SalesReportController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\StockReportController;
 use App\Http\Controllers\UserController;
@@ -42,6 +43,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('users', UserController::class);
 
         Route::get('report/product-stock', [StockReportController::class, 'index'])->name('stock.report');
+        Route::get('report/sales', [SalesReportController::class, 'index'])->name('sales.report');
     });
 
     Route::get('/products/{productId}/stocks/{sizeId}', [StockController::class, 'getStockBySize']);
