@@ -1,21 +1,21 @@
 <x-app-layout>
-    <x-slot name="header">Products</x-slot>
-    <x-slot name="activeMenu">products</x-slot>
+    <x-slot name="header">Master Sepatu</x-slot>
+    <x-slot name="activeMenu">master-sepatu</x-slot>
 
     <div class="card">
         <div class="card-header">
-            <a href="{{ route('products.create') }}" class="btn btn-primary">Add Product</a>
+            <a href="{{ route('products.create') }}" class="btn btn-primary">Tambah Sepatu</a>
         </div>
         <div class="card-body">
             <table class="table table-hover">
                 <thead>
                     <tr class="table-light">
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th>Price</th>
-                        <th>Brand</th>
-                        <th>Category</th>
-                        <th>Actions</th>
+                        <th>Nama Sepatu</th>
+                        <th>Keterangan</th>
+                        <th>Harga</th>
+                        <th>Merk</th>
+                        <th>Jenis</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -28,11 +28,17 @@
                             <td>{{ $product->category->name }}</td>
                             <td>
                                 <div class="d-flex gap-2">
-                                    <a href="{{ route('products.edit', $product->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                                    <a href="{{ route('products.edit', $product->id) }}" class="btn btn-sm btn-warning">
+                                        <i class="mdi mdi-pencil"></i>
+                                        Edit
+                                    </a>
                                     <form action="{{ route('products.destroy', $product->id) }}" method="POST" class="inline-block">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Yakin mau dihapus  ?')">
+                                            <i class="mdi mdi-delete"></i>
+                                            Delete
+                                        </button>
                                     </form>
                                 </div>
                             </td>

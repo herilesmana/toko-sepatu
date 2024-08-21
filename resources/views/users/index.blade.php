@@ -1,19 +1,22 @@
 <x-app-layout>
-    <x-slot name="header">Users</x-slot>
-    <x-slot name="activeMenu">users</x-slot>
+    <x-slot name="header">Master Pengguna</x-slot>
+    <x-slot name="activeMenu">master-pengguna</x-slot>
 
     <div class="card">
         <div class="card-header">
-            <a href="{{ route('users.create') }}" class="btn btn-primary">Add User</a>
+            <a href="{{ route('users.create') }}" class="btn btn-primary">
+                <i class="mdi mdi-plus"></i>
+                Tambah Pengguna
+            </a>
         </div>
         <div class="card-body">
             <table class="table table-hover">
                 <thead>
                     <tr class="table-light">
-                        <th>Name</th>
+                        <th>Nama</th>
                         <th>Email</th>
                         <th>Role</th>
-                        <th>Actions</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>

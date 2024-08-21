@@ -1,17 +1,17 @@
 <x-app-layout>
-    <x-slot name="header">Brands</x-slot>
-    <x-slot name="activeMenu">brands</x-slot>
+    <x-slot name="header">Master Merk</x-slot>
+    <x-slot name="activeMenu">master-merk</x-slot>
 
     <div class="card">
         <div class="card-header">
-            <a href="{{ route('brands.create') }}" class="btn btn-primary">Add Brand</a>
+            <a href="{{ route('brands.create') }}" class="btn btn-primary">Tambah Merk</a>
         </div>
         <div class="card-body">
             <table class="table table-hover">
                 <thead>
                     <tr class="table-light">
-                        <th>Name</th>
-                        <th>Description</th>
+                        <th>Nama Merk</th>
+                        <th>Keterangan</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -22,11 +22,17 @@
                             <td>{{ $brand->description }}</td>
                             <td>
                                 <div class="d-flex gap-2">
-                                    <a href="{{ route('brands.edit', $brand->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                                    <a href="{{ route('brands.edit', $brand->id) }}" class="btn btn-sm btn-warning">
+                                        <i class="mdi mdi-pencil"></i>
+                                        Edit
+                                    </a>
                                 <form action="{{ route('brands.destroy', $brand->id) }}" method="POST" class="inline-block">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Yakin mau dihapus?')">
+                                        <i class="mdi mdi-delete"></i>
+                                        Hapus
+                                    </button>
                                 </form>
                                 </div>
                             </td>

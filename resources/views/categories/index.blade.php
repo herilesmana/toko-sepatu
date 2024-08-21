@@ -1,18 +1,18 @@
 <x-app-layout>
-    <x-slot name="header">Categories</x-slot>
-    <x-slot name="activeMenu">categories</x-slot>
+    <x-slot name="header">Master Jenis</x-slot>
+    <x-slot name="activeMenu">master-jenis</x-slot>
 
     <div class="card">
         <div class="card-header">
-            <a href="{{ route('categories.create') }}" class="btn btn-primary">Add Category</a>
+            <a href="{{ route('categories.create') }}" class="btn btn-primary">Tambah Jenis</a>
         </div>
         <div class="card-body">
             <table class="table table-hover">
                 <thead>
                     <tr class="table-light">
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th>Actions</th>
+                        <th>Nama Jenis</th>
+                        <th>Keterangan</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -22,11 +22,17 @@
                             <td>{{ $category->description }}</td>
                             <td>
                                 <div class="d-flex gap-2">
-                                    <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                                    <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-sm btn-warning">
+                                        <i class="mdi mdi-pencil"></i>
+                                        Edit
+                                    </a>
                                     <form action="{{ route('categories.destroy', $category->id) }}" method="POST" class="inline-block">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Yakin mau dihapus?')">
+                                            <i class="mdi mdi-delete"></i>
+                                            Delete
+                                        </button>
                                     </form>
                                 </div>
                             </td>

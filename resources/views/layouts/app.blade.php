@@ -24,13 +24,13 @@
             'menu' => [
                 [
                     'path' => '/incoming-stocks/create',
-                    'label' => 'Incoming Stocks',
+                    'label' => 'Barang Masuk',
                     'icon' => 'mdi-import',
                     'submenu' => []
                 ],
                 [
                     'path' => '/sales/create',
-                    'label' => 'Sales',
+                    'label' => 'Penjualan Barang',
                     'icon' => 'mdi-cash-register',
                     'submenu' => []
                 ]
@@ -42,7 +42,7 @@
             'menu' => [
                 [
                     'path' => '/report/product-stock',
-                    'label' => 'Product Stock',
+                    'label' => 'Stok Barang',
                     'icon' => 'mdi-file-chart',
                     'submenu' => []
                 ],
@@ -60,25 +60,25 @@
             'menu' => [
                 [
                     'path' => '/brands',
-                    'label' => 'Brands',
+                    'label' => 'Master Merk',
                     'icon' => 'mdi-shoe-formal',
                     'submenu' => []
                 ],
                 [
                     'path' => '/categories',
-                    'label' => 'Categories',
+                    'label' => 'Master Jenis',
                     'icon' => 'mdi-shoe-formal',
                     'submenu' => []
                 ],
                 [
                     'path' => '/products',
-                    'label' => 'Products',
+                    'label' => 'Master Sepatu',
                     'icon' => 'mdi-shoe-formal',
                     'submenu' => []
                 ],
                 [
                     'path' => '/users',
-                    'label' => 'Users',
+                    'label' => 'Master Pengguna',
                     'icon' => 'mdi-account-group',
                     'submenu' => []
                 ]

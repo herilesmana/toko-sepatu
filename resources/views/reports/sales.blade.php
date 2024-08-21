@@ -1,6 +1,6 @@
 <x-app-layout>
-    <x-slot name="header">Sales Report</x-slot>
-    <x-slot name="activeMenu">sales</x-slot>
+    <x-slot name="header">Laporan Penjualan</x-slot>
+    <x-slot name="activeMenu">laporan-penjualan</x-slot>
 
     <div class="container mt-5">
         <div class="card">
@@ -8,13 +8,13 @@
                 <table class="table table-hover m-0 table-striped">
                     <thead>
                         <tr class="bg-warning">
-                            <th>Invoice Number</th>
-                            <th>Product Name</th>
-                            <th>Shoe Size</th>
-                            <th>Quantity</th>
-                            <th>Price</th>
+                            <th>ID Penjualan</th>
+                            <th>Nama Sepatu</th>
+                            <th>Ukuran</th>
+                            <th>Jumlah</th>
+                            <th>Harga</th>
                             <th>Total</th>
-                            <th>Sales Date</th>
+                            <th>Tanggal</th>
                         </tr>
                     </thead>
                     <tbody>

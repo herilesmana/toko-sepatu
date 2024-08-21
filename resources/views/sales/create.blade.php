@@ -1,24 +1,24 @@
 <x-app-layout>
     <x-slot name="header">Point of Sale (POS)</x-slot>
-    <x-slot name="activeMenu">sales</x-slot>
+    <x-slot name="activeMenu">penjualan-barang</x-slot>
 
     <div class="card">
         <div class="card-body">
             <div class="row">
                 <!-- Left Column: Barcode Input & Product Search -->
                 <div class="col-md-5">
-                    <h3 class="font-weight-bold mb-4">Scan or Search Product</h3>
+                    <h3 class="font-weight-bold mb-4">Scan or Cari Barang</h3>
                     <div id="product-input-section">
                         <!-- Barcode Input -->
                         <div class="mb-4">
-                            <label for="barcode" class="form-label">Scan Barcode:</label>
-                            <input type="text" id="barcode" class="form-control" placeholder="Scan or enter barcode" autofocus>
+                            <label for="barcode" class="form-label">Masukan Nomor Barcode:</label>
+                            <input type="text" id="barcode" class="form-control" placeholder="Scan atau masukan nomor barcode" autofocus>
                         </div>
                         
                         <!-- Product Search Input -->
                         <div class="mb-4">
-                            <label for="search" class="form-label">Search Product:</label>
-                            <input type="text" id="search" class="form-control" placeholder="Enter product name">
+                            <label for="search" class="form-label">Cari Barang:</label>
+                            <input type="text" id="search" class="form-control" placeholder="Nama sepatu">
                         </div>
 
                         <!-- Product List -->
@@ -40,38 +40,55 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-4">
-                                        <label for="shoe_size_id" class="form-label">Shoe Size</label>
+                                        <label for="shoe_size_id" class="form-label">Ukuran</label>
                                         <select id="shoe_size_id" class="form-select" required>
-                                            <option value="" disabled selected>Select a size</option>
+                                            <option value="" disabled selected>Pilih</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="mb-4">
-                                        <label for="quantity" class="form-label">Quantity</label>
+                                        <label for="quantity" class="form-label">Jumlah</label>
                                         <input type="number" id="quantity" class="form-control" value="1" min="1" required>
                                     </div>
                                 </div>
                             </div>
-                            <button type="button" id="add-item" class="btn btn-primary">Add Item</button>
+                            <button type="button" id="add-item" class="btn btn-primary">
+                                <i class="mdi mdi-plus"></i>
+                                Tambahkan
+                            </button>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Right Column: Sale Items and Checkout -->
                 <div class="col-md-7">
-                    <h3 class="font-weight-bold mb-4">Sale Summary</h3>
+                    <h3 class="font-weight-bold mb-4">
+                        <i class="mdi mdi-cart"></i>
+                        Keranjang Belanja
+                    </h3>
                     <form action="{{ route('sales.store') }}" method="POST">
                         @csrf
                         <div id="sale-items">
                             <!-- Items will be added here dynamically -->
                         </div>
                         <div class="mt-4">
-                            <div class="d-flex justify-content-between">
+                            <div class="">
                                 <div>
                                     <h4 class="font-weight-bold">Total : <span id="total-price"></span></h4>
                                 </div>
-                                <button id="complete-sale-button" type="submit" class="btn btn-success">Complete Sale</button>
+                                <div>
+                                    <h4 class="font-weight-bold">
+                                        <div class="d-flex">
+                                            <div style="width: 160px">Total Bayar :</div>
+                                            <input type="number" id="total-bayar" style="width: 200px" class="form-control form-control-sm">
+                                        </div>
+                                    </h4>
+                                </div>
+                                <div>
+                                    <h4 class="font-weight-bold">Kembalian : <span id="total-change"></span></h4>
+                                </div>
+                                <button id="complete-sale-button" type="submit" class="btn btn-success">Lanjutkan</button>
                             </div>
                         </div>
                     </form>
@@ -162,7 +179,7 @@
         function fetchShoeSizes(productId) {
             $.getJSON(`/api/product/${productId}/sizes`, function(data) {
                 let shoeSizeSelect = $('#shoe_size_id');
-                shoeSizeSelect.empty().append('<option value="" disabled selected>Select a size</option>');
+                shoeSizeSelect.empty().append('<option value="" disabled selected>Pilih</option>');
     
                 $.each(data, function(index, size) {
                     shoeSizeSelect.append(
@@ -196,12 +213,12 @@
             let price = $('#price').val();
     
             if (!shoeSizeId) {
-                alert('Please select a shoe size!');
+                alert('Pilih ukuran sepatu!');
                 return;
             }
     
             if (quantity > availableQuantity) {
-                alert('Quantity exceeds available stock!');
+                alert('Jumlah melebihi stock yang tersedia!');
                 return;
             }
     
@@ -239,6 +256,15 @@
             $('#product-details').hide();
             $('#barcode').focus();
         });
+
+        $('#total-bayar').on('keyup', function() {
+            let totalPrice = parseInt($('#total-price').text().replace('Rp', '').replace(/\./g, ''));
+            let totalBayar = $(this).val();
+            let totalChange = totalBayar - totalPrice;
+
+            console.log(totalPrice, totalBayar, totalChange);
+            $('#total-change').text(currencyIndonesia(totalChange));
+        });
     
         // Load sale items from localStorage
         function loadSaleItems() {
@@ -258,12 +284,12 @@
                             <input type="hidden" name="items[${index}][price]" value="${item.price}">
                             <div class="d-flex justify-content-between">
                                 <div>
-                                    Quantity: <button type="button" class="btn btn-sm btn-icon btn-dark decrease-quantity rounded-circle" data-index="${index}">-</button> 
+                                    Jumlah: <button type="button" class="btn btn-sm btn-icon btn-dark decrease-quantity rounded-circle" data-index="${index}">-</button> 
                                          <span class="item-quantity px-2">${item.quantity}</span> 
                                          <button type="button" class="btn btn-sm btn-icon btn-dark increase-quantity rounded-circle" data-index="${index}">+</button>
                                 </div>
                                 <div>
-                                    <span>Price: ${currencyIndonesia(item.price)}</span>
+                                    <span>Harga: ${currencyIndonesia(item.price)}</span>
                                 </div>
                             </div>
                             <div class="mt-2">

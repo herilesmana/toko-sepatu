@@ -1,6 +1,6 @@
 <x-app-layout>
-    <x-slot name="header">Product Stock Report</x-slot>
-    <x-slot name="activeMenu">product-stock</x-slot>
+    <x-slot name="header">Stok Sepatu</x-slot>
+    <x-slot name="activeMenu">stok-barang</x-slot>
 
     <div class="container mt-5">
         <div class="card">
@@ -8,9 +8,9 @@
                 <table class="table table-hover m-0 table-striped">
                     <thead>
                         <tr class="bg-warning">
-                            <th>Product Name</th>
-                            <th>Shoe Size</th>
-                            <th>Stock Quantity</th>
+                            <th>Nama Sepatu</th>
+                            <th>Ukurang</th>
+                            <th>Stok</th>
                         </tr>
                     </thead>
                     <tbody>
