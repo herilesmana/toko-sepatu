@@ -41,6 +41,8 @@
                 </button>
             </form>
             <hr>
+            <div id="sales-report-container"></div>
+            <hr>
             <table class="table table-hover m-0 table-striped">
                 <thead>
                     <tr class="bg-light">
@@ -66,11 +68,60 @@
                     </tr>
                     @endforeach
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="5" class="text-end">Total</th>
+                        <th>{{ number_format($total, 0, ',', '.') }}</th>
+                        <th></th>
+                    </tr>
+                </tfoot>
             </table>
         </div>
     </div>
 
     <x-slot name="scripts">
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                Highcharts.chart('sales-report-container', {
+                    chart: {
+                        type: 'column'
+                    },
+                    title: {
+                        text: 'Product Sales Report'
+                    },
+                    xAxis: {
+                        categories: @json($chartData->pluck('product')),
+                        title: {
+                            text: null
+                        }
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: 'Quantity',
+                            align: 'high'
+                        },
+                        labels: {
+                            overflow: 'justify'
+                        }
+                    },
+                    plotOptions: {
+                        bar: {
+                            dataLabels: {
+                                enabled: true
+                            }
+                        }
+                    },
+                    series: [{
+                        name: 'Quantity',
+                        data: @json($chartData->pluck('quantity'))
+                    }]
+                });
+            });
+        </script>
+
         <script>
             $(document).ready(function() {
                 $('.table').DataTable();

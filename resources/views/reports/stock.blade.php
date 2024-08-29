@@ -8,7 +8,7 @@
                 <thead>
                     <tr class="bg-light">
                         <th>Nama Sepatu</th>
-                        <th>Ukurang</th>
+                        <th>Ukuran</th>
                         <th>Stok</th>
                     </tr>
                 </thead>
