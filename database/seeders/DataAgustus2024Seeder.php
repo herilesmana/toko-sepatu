@@ -823,7 +823,8 @@ class DataAgustus2024Seeder extends Seeder
             $sale = \App\Models\Sale::create([
                 'total_amount' => $item['total'],
                 'user_id' => 1,
-                'created_at' => date('Y-m-d H:i:s', strtotime($item['tanggal'])),
+                // Format from date indonesia to Y-m-d H:i:s
+                'created_at' => \Carbon\Carbon::createFromFormat('d F Y', $item['tanggal'])->format('Y-m-d H:i:s'),
             ]);
 
             \App\Models\SaleItem::create([
