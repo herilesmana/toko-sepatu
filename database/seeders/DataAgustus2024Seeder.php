@@ -819,12 +819,14 @@ class DataAgustus2024Seeder extends Seeder
                 }
             }
 
+            \Carbon\Carbon::setLocale('id');
+
             // Buat transaksi sale
             $sale = \App\Models\Sale::create([
                 'total_amount' => $item['total'],
                 'user_id' => 1,
                 // Format from date indonesia to Y-m-d H:i:s
-                'created_at' => \Carbon\Carbon::createFromFormat('d F Y', $item['tanggal'])->format('Y-m-d H:i:s'),
+                'created_at' => \Carbon\Carbon::createFromFormat('d F Y', $item['tanggal'], 'Asia/Jakarta')->format('Y-m-d H:i:s'),
             ]);
 
             \App\Models\SaleItem::create([
