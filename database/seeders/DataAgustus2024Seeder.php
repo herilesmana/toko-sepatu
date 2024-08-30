@@ -823,7 +823,7 @@ class DataAgustus2024Seeder extends Seeder
             $sale = \App\Models\Sale::create([
                 'total_amount' => $item['total'],
                 'user_id' => 1,
-                'created_at' => strtotime($item['tanggal']),
+                'created_at' => date('Y-m-d H:i:s', strtotime($item['tanggal'])),
             ]);
 
             \App\Models\SaleItem::create([
