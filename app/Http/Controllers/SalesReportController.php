@@ -39,8 +39,7 @@ class SalesReportController extends Controller
         $chartData = $data->groupBy('product_id')->map(function ($item) {
             return [
                 'product' => $item->first()->product->name,
-                'quantity' => $item->sum('quantity'),
-                'sumQTY', $sumQTY
+                'quantity' => $item->sum('quantity')
             ];
         });
 
