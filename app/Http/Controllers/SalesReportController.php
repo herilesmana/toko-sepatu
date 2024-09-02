@@ -44,6 +44,6 @@ class SalesReportController extends Controller
             ];
         });
 
-        return view('reports.sales', compact('data', 'year', 'month', 'total', 'chartData'));
+        return view('reports.sales', compact('data', 'year', 'month', 'total', 'chartData', 'sumQTY'));
     }
 }
