@@ -1,6 +1,6 @@
 <x-app-layout>
-    <x-slot name="header">Incoming Stocks</x-slot>
-    <x-slot name="activeMenu">incoming-stocks</x-slot>
+    <x-slot name="header">Barang Masuk</x-slot>
+    <x-slot name="activeMenu">barang-masuk</x-slot>
 
     <div class="card">
         <div class="card-body">
