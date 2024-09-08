@@ -5,20 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class IncomingStock extends Model
+class IncomingTransaction extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['product_id', 'shoe_size_id', 'quantity', 'incoming_transaction_id'];
+    protected $fillable = [
+        'user_id',
+        'supplier_name'
+    ];
 
-    public function product()
+    public function user()
     {
-        return $this->belongsTo(Product::class);
+        return $this->belongsTo(User::class);
     }
 
-    public function shoeSize()
+    public function items()
     {
-        return $this->belongsTo(ShoeSize::class);
+        return $this->hasMany(IncomingStock::class);
     }
 
     public function getFormattedCreatedAtAttribute()

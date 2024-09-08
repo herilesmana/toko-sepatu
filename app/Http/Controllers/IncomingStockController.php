@@ -6,15 +6,15 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\ShoeSize;
 use App\Models\IncomingStock;
+use App\Models\IncomingTransaction;
 use App\Models\Stock;
 
 class IncomingStockController extends Controller
 {
     public function index()
     {
-        $incomingStocks = IncomingStock::with('product', 'shoeSize')
-        ->paginate(10);
-        return view('incoming-stocks.index', compact('incomingStocks'));
+        $transactions = IncomingTransaction::paginate(10);
+        return view('incoming-stocks.index', compact('transactions'));
     }
 
     public function create()
@@ -24,30 +24,59 @@ class IncomingStockController extends Controller
         return view('incoming-stocks.create', compact('products', 'shoeSizes'));
     }
 
+    public function receipt($transactionId)
+    {
+        $transaction = IncomingTransaction::findOrFail($transactionId);
+        return view('incoming-stocks.receipt', compact('transaction'));
+    }
+
     public function store(Request $request)
     {
         $request->validate([
-            'product_id' => 'required|exists:products,id',
-            'shoe_size_id' => 'required|exists:shoe_sizes,id',
-            'quantity' => 'required|integer|min:1',
+            'product_id' => 'required',
+            'shoe_size_id' => 'required',
+            'quantity' => 'required',
+            'supplier_name' => 'required'
         ]);
 
-        $incomingStock = IncomingStock::create($request->all());
+        $transaction = IncomingTransaction::create([
+            'user_id' => auth()->id(),
+            'supplier_name' => $request->supplier_name,
+        ]);
 
-        $stock = Stock::where('product_id', $request->product_id)
-            ->where('shoe_size_id', $request->shoe_size_id)
-            ->first();
+        // Explode comma separated values
+        $productIds = explode(',', $request->product_id);
+        $shoeSizeIds = explode(',', $request->shoe_size_id);
+        $quantities = explode(',', $request->quantity);
 
-        if ($stock == null) {
-            $stock = Stock::create([
-                'product_id' => $request->product_id,
-                'shoe_size_id' => $request->shoe_size_id,
-                'quantity' => 0,
+        // Loop through each product id
+        foreach ($productIds as $key => $productId) {
+            // Create incoming stock
+            $incomingStock = IncomingStock::create([
+                'product_id' => $productId,
+                'shoe_size_id' => $shoeSizeIds[$key],
+                'quantity' => $quantities[$key],
+                'incoming_transaction_id' => $transaction->id,
             ]);
+
+            // Find stock
+            $stock = Stock::where('product_id', $productId)
+                ->where('shoe_size_id', $shoeSizeIds[$key])
+                ->first();
+
+            // If stock is not found, create a new stock
+            if ($stock == null) {
+                $stock = Stock::create([
+                    'product_id' => $productId,
+                    'shoe_size_id' => $shoeSizeIds[$key],
+                    'quantity' => 0,
+                ]);
+            }
+
+            // Increment stock quantity
+            $stock->increment('quantity', $quantities[$key]);
         }
 
-        $stock->increment('quantity', $request->quantity);
-
-        return redirect()->route('incoming-stocks.create')->with('success', 'Incoming stock added successfully.');
+        return redirect()->route('incoming-stocks.index')->with('success', 'Incoming stock added successfully.');
     }
 }

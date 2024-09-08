@@ -4,30 +4,38 @@
 
     <div class="card">
         <div class="card-body">
-            <a href="{{ route('incoming-stocks.create') }}" class="btn btn-success mb-3">Add Incoming Stock</a>
+            <a href="{{ route('incoming-stocks.create') }}" class="btn btn-success mb-3">
+                <i class="mdi mdi-plus"></i>
+                Buat Transaksi Kedatangan
+            </a>
             <div class="table-responsive">
                 <table class="table table-bordered tabe-hover table-striped">
                     <thead class="table-light">
                         <tr>
-                            <th>Product</th>
-                            <th>Shoe Size</th>
-                            <th>Quantity</th>
-                            <th>Transaction Time</th>
+                            <th>Supplier</th>
+                            <th>Total Quantity</th>
+                            <th>Waktu Transaksi</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($incomingStocks as $incomingStock)
+                        @foreach ($transactions as $transaction)
                             <tr>
-                                <td>{{ $incomingStock->product->name }}</td>
-                                <td>{{ $incomingStock->shoeSize->size }}</td>
-                                <td>{{ $incomingStock->quantity }}</td>
-                                <td>{{ $incomingStock->getFormattedCreatedAtAttribute() }}</td>
+                                <td>{{ $transaction->supplier_name }}</td>
+                                <td>{{ $transaction->items->sum('quantity') }}</td>
+                                <td>{{ $transaction->getFormattedCreatedAtAttribute() }}</td>
+                                <td>
+                                    <a target="_blank" href="{{ route('incoming-stocks.receipt', $transaction->id) }}" class="btn btn-primary btn-sm">
+                                        <i class="mdi mdi-printer"></i>
+                                        Print
+                                    </a>
+                                </td>
                             </tr>
                         @endforeach
 
-                        @if ($incomingStocks->isEmpty())
+                        @if ($transactions->isEmpty())
                             <tr>
-                                <td colspan="4" class="text-center">No incoming stocks found.</td>
+                                <td colspan="3" class="text-center">No incoming stocks found.</td>
                             </tr>
                         @endif
                     </tbody>
@@ -35,7 +43,7 @@
             </div>
 
             <div class="mt-3">
-                {{ $incomingStocks->links() }}
+                {{ $transactions->links() }}
             </div>
         </div>
     </div>

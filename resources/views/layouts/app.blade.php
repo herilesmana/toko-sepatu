@@ -23,7 +23,7 @@
             'label' => 'Transaksi',
             'menu' => [
                 [
-                    'path' => '/incoming-stocks/create',
+                    'path' => '/incoming-stocks',
                     'label' => 'Barang Masuk',
                     'icon' => 'mdi-import',
                     'submenu' => []

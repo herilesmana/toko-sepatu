@@ -20,14 +20,14 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call([
-            // ShoeSizesSeeder::class,
-            // BrandSeeder::class,
-            // CategorySeeder::class,
-            // ProductSeeder::class,
+            ShoeSizesSeeder::class,
+            BrandSeeder::class,
+            CategorySeeder::class,
+            ProductSeeder::class,
 
-            DataJuni2024Seeder::class,
-            DataJuli2024Seeder::class,
-            DataAgustus2024Seeder::class,
+            // DataJuni2024Seeder::class,
+            // DataJuli2024Seeder::class,
+            // DataAgustus2024Seeder::class,
         ]);
     }
 }

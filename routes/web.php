@@ -48,6 +48,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/products/{productId}/stocks/{sizeId}', [StockController::class, 'getStockBySize']);
     Route::resource('incoming-stocks', IncomingStockController::class);
+    Route::get('incoming-stocks/{transaction_id}/receipt', [IncomingStockController::class, 'receipt'])->name('incoming-stocks.receipt');
     Route::resource('sales', SaleController::class);
     Route::get('sales/{sale_id}/receipt', [SaleController::class, 'receipt'])->name('sales.receipt');
 });
