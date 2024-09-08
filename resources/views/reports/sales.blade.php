@@ -70,7 +70,9 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th colspan="5" class="text-end">Total</th>
+                        <th colspan="3" class="text-end">Total</th>
+                        <th>{{ $sumQTY }}</th>
+                        <th></th>
                         <th>{{ number_format($total, 0, ',', '.') }}</th>
                         <th></th>
                     </tr>

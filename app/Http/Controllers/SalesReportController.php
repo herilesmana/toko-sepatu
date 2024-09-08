@@ -33,14 +33,16 @@ class SalesReportController extends Controller
             return $item->quantity * $item->price;
         });
 
+        $sumQTY = $data->sum('quantity');
+
         // Bar chart data for which product sold the most with product name and quantity
         $chartData = $data->groupBy('product_id')->map(function ($item) {
             return [
                 'product' => $item->first()->product->name,
-                'quantity' => $item->sum('quantity'),
+                'quantity' => $item->sum('quantity')
             ];
         });
 
-        return view('reports.sales', compact('data', 'year', 'month', 'total', 'chartData'));
+        return view('reports.sales', compact('data', 'year', 'month', 'total', 'chartData', 'sumQTY'));
     }
 }
