@@ -65,7 +65,7 @@
                                         <th class="px-0">Product</th>
                                         <th>Size</th>
                                         <th>Qty</th>
-                                        <th>Price</th>
+                                        <th>Harga Beli</th>
                                         <th class="text-end">Subtotal</th>
                                     </tr>
                                 </thead>
@@ -75,15 +75,15 @@
                                         <td class="px-0">{{ $item->product->name }}</td>
                                         <td>{{ $item->shoeSize->size }}</td>
                                         <td>{{ $item->quantity }}</td>
-                                        <td>Rp{{ number_format($item->price, 0, ',', '.') }},-</td>
-                                        <td class="text-end">Rp{{ number_format($item->price*$item->quantity, 0, ',', '.') }},-</td>
+                                        <td>Rp{{ number_format($item->product->buy_price, 0, ',', '.') }},-</td>
+                                        <td class="text-end">Rp{{ number_format($item->product->buy_price*$item->quantity, 0, ',', '.') }},-</td>
                                     </tr>
                                     @endforeach
                                     <!-- Add more products as needed -->
                                     <tr>
                                         <td colspan="4" class="text-end"><strong>Total</strong></td>
                                         <td class="text-end"><strong>
-                                            Rp{{ number_format($transaction->total, 0, ',', '.') }},-</strong></td>
+                                            Rp{{ number_format($transaction->total(), 0, ',', '.') }},-</strong></td>
                                         </strong></td>
                                     </tr>
                                 </tbody>

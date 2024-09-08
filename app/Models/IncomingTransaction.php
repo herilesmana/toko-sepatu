@@ -28,4 +28,11 @@ class IncomingTransaction extends Model
     {
         return $this->created_at->format('d F Y H:i');
     }
+
+    public function total()
+    {
+        return $this->items->sum(function ($item) {
+            return $item->quantity * $item->product->buy_price;
+        });
+    }
 }

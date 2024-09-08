@@ -14,8 +14,9 @@
                 <thead>
                     <tr class="table-light">
                         <th>Nama Sepatu</th>
-                        <th>Keterangan</th>
+                        <th style="width: 30%">Keterangan</th>
                         <th>Harga</th>
+                        <th>Harga Beli</th>
                         <th>Merk</th>
                         <th>Jenis</th>
                         <th>Aksi</th>
@@ -27,6 +28,7 @@
                             <td>{{ $product->name }}</td>
                             <td>{{ $product->description }}</td>
                             <td>{{ $product->getFormattedPriceAttribute() }}</td>
+                            <td>{{ $product->getFormattedBuyPriceAttribute() }}</td>
                             <td>{{ $product->brand->name }}</td>
                             <td>{{ $product->category->name }}</td>
                             <td>

@@ -15,8 +15,12 @@
                     <textarea name="description" id="description" class="form-control"></textarea>
                 </div>
                 <div class="mb-4">
-                    <label for="price" class="form-label">Harga:</label>
+                    <label for="price" class="form-label">Harga Jual:</label>
                     <input type="number" name="price" id="price" step="0.01" class="form-control" required>
+                </div>
+                <div class="mb-4">
+                    <label for="buy_price" class="form-label">Harga Beli:</label>
+                    <input type="number" name="buy_price" id="buy_price" step="0.01" class="form-control" required>
                 </div>
                 <div class="mb-4">
                     <label for="brand_id" class="form-label">Merk:</label>
